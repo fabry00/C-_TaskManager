@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using TutorialConsoleApplication.Task;
+using TutorialConsoleApplication.Displayer;
 
 namespace TutorialConsoleApplication
 {
@@ -17,14 +18,17 @@ namespace TutorialConsoleApplication
 
         static void Main(string[] args)
         {
-
+            MyDisplayer displayer = new MyDisplayer();
             TaskManager manager = new TaskManager();
+            manager.NewTask += displayer.NewTask;
+            manager.ProcessRemoved += displayer.ProcessRemoved;
 
             Console.WriteLine("Press ESC to exit");
             do
             {
                 Console.WriteLine("Running app");
             } while (Console.ReadKey(true).Key != ConsoleKey.Escape);
+
            /* myDlg del = new myDlg(TestFunction);
             del("Hellow world"); //Puntatore a TestFunction
 
